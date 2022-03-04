@@ -39,6 +39,7 @@ namespace ProjectsProject.Pages
                 var photo = await MediaPicker.PickPhotoAsync();
                 pathName = photo.FullPath;
             }
+
             catch (Exception ex)
             {
                 await DisplayAlert("Ошибка получения фото из галереи", ex.Message, "OK");
@@ -47,26 +48,22 @@ namespace ProjectsProject.Pages
 
         private async void GetPhotoCam(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    var photo = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions
-            //    {
-            //        Title = $"xamarin.{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.png"
-            //    });
-            //
-            //    var newFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), photo.FileName);
-            //    using (var stream = await photo.OpenReadAsync())
-            //    using (var newStream = File.OpenWrite(newFile))
-            //        await stream.CopyToAsync(newStream);
-            //
-            //    Debug.WriteLine($"Путь фото {photo.FullPath}");
-            //
-            //    pathName = photo.FullPath;
-            //}
-            //catch (Exception ex)
-            //{
-            //    await DisplayAlert("Ошибка получения фото из камеры", ex.Message, "OK");
-            //}
+            try
+            {
+                var photo = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions
+                {
+                    Title = $"xamarin.{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.png"
+                });
+
+                Database.Model.Image image = new Database.Model.Image();
+                image.Name = photo.FileName;
+                image.PathImage = photo.FullPath;
+            }
+
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка получения фото из камеры", ex.Message, "OK");
+            }
         }
 
         private void AddImage(object sender, EventArgs e)
