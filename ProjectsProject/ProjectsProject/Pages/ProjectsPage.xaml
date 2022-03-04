@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectsProject.Pages.ProjectsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#3084ec"/>
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="CornerRadius" Value="30"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Padding="30" Spacing="30">
+        <StackLayout BackgroundColor="#d0cccc">
+            <Entry x:Name="imageName" Placeholder="Введите название" Margin="15" TextColor="Black"/>
+        </StackLayout>
+        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal">
+            <Button Style="{StaticResource buttonStyle}" Clicked="GetPhotoCam" Text="Камера" HorizontalOptions="FillAndExpand"/>
+            <Button Style="{StaticResource buttonStyle}" Clicked="GetPhotoGal"  Text="Галерея" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <StackLayout>
+            <Button Style="{StaticResource buttonStyle}" Clicked="AddImage" Text="Добавить" />
+        </StackLayout>
+        <ListView x:Name="projectList" ItemsSource="{Binding}" ItemSelected="projectList_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                <Label Padding="10" Text="{Binding Name}" TextColor="Black" FontSize="Medium" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
