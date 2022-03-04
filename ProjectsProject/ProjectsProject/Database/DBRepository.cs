@@ -6,7 +6,7 @@ using ProjectsProject.Database.Model;
 
 namespace ProjectsProject.Database
 {
-    class DBRepository
+    public class DBRepository
     {
         SQLiteConnection db;
         public DBRepository(string databasePath)
