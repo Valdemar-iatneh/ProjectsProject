@@ -10,7 +10,7 @@ namespace ProjectsProject
         {
             InitializeComponent();
 
-            MainPage = new Pages.ImagePage();
+            MainPage = new NavigationPage(new Pages.ProjectsPage());
         }
 
         protected override void OnStart()
